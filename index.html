@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Multiple Choice Quiz</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+  </head>
+
+  <body>
+
+    <form>
+
+      <h1>Multiple Choice Quiz</h1>
+
+      <fieldset>
+
+        <ul id="questions"></ul>
+
+      </fieldset>
+
+      <button type="submit" name="submit">Submit Quiz</button>
+      <button type="reset" name="reset">Reset</button>
+
+    </form>
+
+
+    <!-- Handlebars templates -->
+
+    <script id="questionListTemplate" type="text/x-handlebars">
+
+      {{#each questions}}
+
+        <li class="question-{{id}}">
+
+          <p>Q{{id}}. {{{description}}}</p>
+
+          <ul class="answers">
+
+            {{#each options}}
+
+              <li class="answer">
+                <input type="radio" id="question-{{../id}}-answer-{{@index}}" name="question-{{../id}}" value="{{this}}">
+                <label for="question-{{../id}}-answer-{{@index}}">{{this}}</label>
+              </li>
+
+            {{/each}}
+
+          </ul>
+
+          <div class="result-{{id}}">
+            <p class="answer-correct">Correct!</p>
+            <p class="answer-missing">You did not answer the question. The correct answer is: <span class="correct-answer"></span></p>
+            <p class="answer-wrong">Wrong answer. The correct answer is: <span class="correct-answer"></span></p>
+          </div>
+
+        </li>
+
+      {{/each}}
+
+    </script>
+
+
+    <!-- jQuery scripts -->
+
+    <script src="script.js"></script>
+
+  </body>
+
+</html>
